@@ -1,0 +1,57 @@
+{% extends 'reviews/base.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-xl-8 mx-auto">
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+        <div class="d-flex align-items-center mb-3">
+          <div class="me-3">
+            <span class="badge bg-primary rounded-pill px-3 py-2">New</span>
+          </div>
+          <div>
+            <h4 class="mb-0">Upload source code for automated review</h4>
+            <div class="text-muted small">Instant LLM-driven suggestions for readability, bugs, and structure.</div>
+          </div>
+        </div>
+
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} mb-3">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data" class="row g-3" novalidate>
+          {% csrf_token %}
+
+          <div class="col-12">
+            <label class="form-label">Select source file</label>
+            <div class="input-group">
+              {{ form.file }}
+              <button class="btn btn-outline-secondary" type="button" onclick="document.querySelector('input[type=file]').value=''">Clear</button>
+            </div>
+            {% if form.file.errors %}<div class="text-danger small mt-1">{{ form.file.errors }}</div>{% endif %}
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Language hint (optional)</label>
+            {{ form.language_hint }}
+            <div class="form-text">Example: <code>python</code>, <code>java</code></div>
+          </div>
+
+          <div class="col-12 d-flex gap-2">
+            <button class="btn btn-primary" type="submit"><i class="bi bi-cloud-arrow-up me-1"></i> Upload & Review</button>
+            <a class="btn btn-outline-secondary" href="{% url 'reviews:upload' %}">Reset</a>
+            <a class="btn btn-link ms-auto" href="/admin/">Admin</a>
+          </div>
+        </form>
+
+        <hr>
+
+        <div class="small text-muted">
+          Tip: For multi-file projects, zip files are supported if you extract server-side; consider uploading single modules for focused reviews.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

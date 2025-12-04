@@ -1,0 +1,8 @@
+/* reviews/static/reviews/styles.css */
+body { font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+.card { border-radius: 12px; }
+.navbar-brand img { border-radius: 6px; }
+pre { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace; font-size: .9rem; background:#0b0f14; color:#d6deeb; padding:1rem; border-radius:8px; }
+.badge { font-weight:600; }
+.btn.active { transform: translateY(-2px); opacity:0.9; }
+.alert-warning { background: linear-gradient(90deg,#fff7e6,#fff3cd); }

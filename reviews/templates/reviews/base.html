@@ -1,0 +1,94 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Code Review Assistant</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet" />
+
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'reviews/styles.css' %}">
+  </head>
+
+  <body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient shadow-sm" style="background: linear-gradient(90deg,#0f172a,#0ea5a4);">
+      <div class="container">
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="{% url 'reviews:upload' %}">
+          <img src="{% static 'reviews/logo.svg' %}" alt="" width="36" height="36" class="me-2" onerror="this.style.display='none'">
+          <span style="color:#0ea5a4;">Code Review Assistant</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto align-items-lg-center">
+            <li class="nav-item me-2"><a class="nav-link text-white" href="{% url 'reviews:upload' %}"><i class="bi bi-upload me-1"></i>Upload</a></li>
+            <li class="nav-item me-2"><a class="nav-link text-white" href="/admin/"><i class="bi bi-gear me-1"></i>Admin</a></li>
+            <li class="nav-item">
+              <a class="btn btn-outline-light btn-sm" href="#" role="button"><i class="bi bi-info-circle me-1"></i>About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container my-5">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="border-top py-3">
+      <div class="container d-flex justify-content-between align-items-center">
+        <div class="small text-muted">© {{ "now"|date:"Y" }} Code Review Assistant</div>
+        <div>
+          <small class="text-muted">Made by <span class="text-danger">Amol ♥</span></small>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Prism -->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+
+    <!-- html2pdf (client-side PDF export) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+    <!-- Small helper scripts -->
+    <script>
+      // copy to clipboard helper
+      function copyText(elSelector) {
+        const node = document.querySelector(elSelector);
+        if (!node) return alert('Nothing to copy');
+        const text = node.innerText;
+        navigator.clipboard.writeText(text).then(() => {
+          const btn = event?.currentTarget;
+          if (btn) {
+            btn.classList.add('active');
+            setTimeout(()=>btn.classList.remove('active'),1200);
+          }
+        });
+      }
+
+      // export visible report area to PDF
+      function exportReportPDF() {
+        const element = document.getElementById('report-area');
+        if (!element) return alert('Report missing');
+        const opt = { margin:0.4, filename:'code-review-report.pdf', image:{type:'jpeg', quality:0.95}, html2canvas:{scale:1.5}, jsPDF:{unit:'in',format:'a4',orientation:'portrait'} };
+        html2pdf().set(opt).from(element).save();
+      }
+    </script>
+  </body>
+</html>
