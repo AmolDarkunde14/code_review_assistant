@@ -84,14 +84,15 @@ Teams doing quick lint-style reviews
 <img width="1919" height="1059" alt="image" src="https://github.com/user-attachments/assets/710bfa35-91f0-4898-83a9-0eedaefbc65b" />
 <img width="1919" height="1002" alt="image" src="https://github.com/user-attachments/assets/34795ed0-5eb7-4357-9876-d496e433231a" />
 
+Database -
 <img width="1445" height="495" alt="image" src="https://github.com/user-attachments/assets/4b9aa246-bcd8-44e2-b8be-cf500d357118" />
 
 <img width="1919" height="753" alt="image" src="https://github.com/user-attachments/assets/8be3b4a4-1ac2-4f78-acc4-ddb0170a86a5" />
 
-Snippet Video -
+Demo -
 https://github.com/user-attachments/assets/471eb879-649a-48ca-bde1-5f3ac466f9b6
 
-link - 
+YouTube snip-video - 
 https://youtu.be/8g_acHFnWsU
 
 
