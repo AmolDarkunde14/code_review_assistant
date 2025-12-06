@@ -42,7 +42,7 @@ Database: SQLite
 Storage: Local media folder for uploaded code
 
 📁 Project Structure:
-
+```
 code_review_assistant/
 │
 ├── code_review_assistant/     # Django project settings
@@ -57,7 +57,7 @@ code_review_assistant/
 ├── .env                       # Gemini API key (not committed)
 ├── db.sqlite3                 # Database
 └── manage.py
-
+```
 
 ⚙️ Installation:
 
